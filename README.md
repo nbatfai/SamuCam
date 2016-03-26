@@ -29,6 +29,8 @@ git checkout vInitialHack
  tail -f out|grep SENSITIZATION
  ```
 
+[https://youtu.be/6cRbyKrq45c](https://youtu.be/6cRbyKrq45c) 
+ 
 ## Previous other experiments
 
 Samu (Nahshon)
