@@ -66,7 +66,7 @@ class Habituation
 
     static const int convergence_limit {
         //4000
-        300
+        100
     };
     static const int error_limit {
         7

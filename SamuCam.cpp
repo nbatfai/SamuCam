@@ -103,7 +103,7 @@ void SamuCam::run()
               cv::cvtColor ( frame, grayFrame, cv::COLOR_BGR2GRAY );
               cv::equalizeHist ( grayFrame, grayFrame );
 
-              faceClassifier.detectMultiScale ( grayFrame, faces, 1.1, 3, 0, cv::Size ( 60, 60 ) );
+              faceClassifier.detectMultiScale ( grayFrame, faces, 1.1, 4, 0, cv::Size ( 60, 60 ) );
 
               if ( faces.size() > 0 )
                 {

@@ -321,7 +321,7 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
           std::stringstream ss;
           int ii {0};
 
-          for ( int ci {0}; ci<256; ++ci )
+          for ( int ci {0}; ci<25; ++ci )
             {
               colors[ci] = 0;
             }
@@ -352,14 +352,18 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
                       s = 0;
                     }
 
-                  ++colors[reality[s][o]];
+                  ++colors[reality[s][o]/10];
 
 
                 } // if
 
           ss << reality[r][c];
-          ss << '|';
-          ss << colors[0]; //img_input[1];
+          for ( int ci {0}; ci<25; ++ci )
+	  {
+	  ss << '|';
+          ss << colors[ci]; //img_input[1];
+	  }
+	  /*
           ss << '|';
           ss << colors[1];
           ss << '|';
@@ -368,7 +372,7 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
           ss << colors[3];
           ss << '|';
           ss << colors[4];
-
+*/
           std::string prg = ss.str();
 
           // with NNs
@@ -386,7 +390,8 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
             {
               ++vsum2;
               //if (  samuQl[r][c].reward() == samuQl[r][c].get_max_reward()/*reality[r][c] == prev[r][c]*/ )
-              if ( reality[r][c] == prev[r][c] )
+              //if ( reality[r][c] == prev[r][c] )
+	      if ( std::abs(reality[r][c] - prev[r][c]) < 20 )
                 {
                   ++sum2;
 //		  if(!isLearning)
@@ -400,7 +405,8 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
             {
               ++vsum;
               //if (  samuQl[r][c].reward() == samuQl[r][c].get_max_reward()/*reality[r][c] == prev[r][c]*/ )
-              if ( reality[r][c] == prev[r][c] )
+//              if ( reality[r][c] == prev[r][c] )
+	      if ( std::abs(reality[r][c] - prev[r][c]) < 20 )	      
                 {
                   ++sum;
 //		  if(!isLearning)
