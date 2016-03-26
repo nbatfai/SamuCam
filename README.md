@@ -20,8 +20,11 @@ git checkout vInitialHack
  make
  ./SamuCam 2>out
 ```
+
+```
  tail -f out|grep "HIGHER-ORDER NOTION MONITOR"
 ```
+
 ``` 
  tail -f out|grep SENSITIZATION
  ```
