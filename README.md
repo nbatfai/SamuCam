@@ -1,5 +1,30 @@
 # SamuCam
+In this project I have started to experiment with real input data. 
 This is a necessary step towards a successful implementation of the project Robopsychology One.
+
+## SamuCam, exp. 10, cognitive mental organs: MPU (Mental Processing Unit), COP-based Q-learning, acquiring higher-order knowledge
+This experiment shows how the program of ["Game of Life"](https://github.com/nbatfai/SamuBrain) 
+has been mechanically applied to learn human faces from videos and photos. The class SamuCam uses OpenCV for face detection. 
+The results for this first experiment can be seen in a video at [https://youtu.be/6cRbyKrq45c](https://youtu.be/6cRbyKrq45c)
+It can be seen easily that Samu COP-based prediction technique for distinguishing human faces will be problematic 
+due to the prediction mechanism has strongly local scope.
+
+### vInitialHack
+
+```
+git clone https://github.com/nbatfai/SamuCam.git
+cd SamuCam/
+wget https://github.com/Itseez/opencv/raw/master/data/lbpcascades/lbpcascade_frontalface.xml
+git checkout vInitialHack
+ ~/Qt/5.5/gcc_64/bin/qmake SamuLife.pro
+ make
+ ./SamuCam 2>out
+```
+ tail -f out|grep "HIGHER-ORDER NOTION MONITOR"
+```
+``` 
+ tail -f out|grep SENSITIZATION
+ ```
 
 ## Previous other experiments
 
@@ -37,6 +62,11 @@ SamuVocab
 https://github.com/nbatfai/SamuVocab
 
 --- 
+
+SamuKnows
+https://github.com/nbatfai/SamuKnows
+
+---
 
 SamuCam
 https://github.com/nbatfai/SamuCam
