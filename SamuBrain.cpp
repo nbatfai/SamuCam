@@ -357,7 +357,7 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
 
                 } // if
 
-          ss << reality[r][c];
+          ss << reality[r][c] % 10;
           for ( int ci {0}; ci<25; ++ci )
 	  {
 	  ss << '|';
@@ -391,7 +391,7 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
               ++vsum2;
               //if (  samuQl[r][c].reward() == samuQl[r][c].get_max_reward()/*reality[r][c] == prev[r][c]*/ )
               //if ( reality[r][c] == prev[r][c] )
-	      if ( std::abs(reality[r][c] - prev[r][c]) < 20 )
+	      if ( std::abs(reality[r][c] - prev[r][c]) < 5 )
                 {
                   ++sum2;
 //		  if(!isLearning)
@@ -406,7 +406,7 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
               ++vsum;
               //if (  samuQl[r][c].reward() == samuQl[r][c].get_max_reward()/*reality[r][c] == prev[r][c]*/ )
 //              if ( reality[r][c] == prev[r][c] )
-	      if ( std::abs(reality[r][c] - prev[r][c]) < 20 )	      
+	      if ( std::abs(reality[r][c] - prev[r][c]) < 5 )	      
                 {
                   ++sum;
 //		  if(!isLearning)
