@@ -299,7 +299,7 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
 }
 */
 
-int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLearning, int & vsum, int & sum2, int & vsum2  )
+int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLearning, int & vsum, int & sum2, int & vsum2 )
 {
 
   MPU samuQl = morgan->getSamu();
@@ -357,22 +357,22 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
 
                 } // if
 
-          ss << reality[r][c] % 10;
+          ss << reality[r][c];
           for ( int ci {0}; ci<25; ++ci )
-	  {
-	  ss << '|';
-          ss << colors[ci]; //img_input[1];
-	  }
-	  /*
-          ss << '|';
-          ss << colors[1];
-          ss << '|';
-          ss << colors[2];
-          ss << '|';
-          ss << colors[3];
-          ss << '|';
-          ss << colors[4];
-*/
+            {
+              ss << '|';
+              ss << colors[ci]; //img_input[1];
+            }
+          /*
+              ss << '|';
+              ss << colors[1];
+              ss << '|';
+              ss << colors[2];
+              ss << '|';
+              ss << colors[3];
+              ss << '|';
+              ss << colors[4];
+          */
           std::string prg = ss.str();
 
           // with NNs
@@ -385,20 +385,20 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
           SPOTriplet response = samuQl[r][c] ( reality[r][c], prg, isLearning == 0 );
 
 //          if ( prev[r][c] )
-          if ( prev[r][c] && reality[r][c])
+          if ( prev[r][c] && reality[r][c] )
             //if ( ( predictions[r][c] == reality[r][c] ) && ( reality[r][c] != 0 ) )
             {
               ++vsum2;
               //if (  samuQl[r][c].reward() == samuQl[r][c].get_max_reward()/*reality[r][c] == prev[r][c]*/ )
               //if ( reality[r][c] == prev[r][c] )
-	      if ( std::abs(reality[r][c] - prev[r][c]) < 5 )
+              if ( std::abs ( reality[r][c] - prev[r][c] ) < 5 )
                 {
                   ++sum2;
 //		  if(!isLearning)
 //		  ++fp[r][c];
                 }
-            }	  
-	  
+            }
+
           if ( reality[r][c] )
 //          if ( prev[r][c] && reality[r][c])
             //if ( ( predictions[r][c] == reality[r][c] ) && ( reality[r][c] != 0 ) )
@@ -406,7 +406,7 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
               ++vsum;
               //if (  samuQl[r][c].reward() == samuQl[r][c].get_max_reward()/*reality[r][c] == prev[r][c]*/ )
 //              if ( reality[r][c] == prev[r][c] )
-	      if ( std::abs(reality[r][c] - prev[r][c]) < 5 )	      
+              if ( std::abs ( reality[r][c] - prev[r][c] ) < 5 )
                 {
                   ++sum;
 //		  if(!isLearning)
@@ -556,7 +556,9 @@ bool Habituation::is_habituation ( int vsum, int sum, double &mon )
   z = mavsum - asum[ma_limit-1];
 
   if ( ( ++counter ) % 15 == 0 )
-    sum10	= ssum;
+    {
+      sum10	= ssum;
+    }
 
   qDebug() << "   HABITUATION MONITOR:"
            << "(isHABI MPU)"
@@ -661,22 +663,22 @@ void SamuBrain::learning ( int **reality, int **predictions, int ***fp, int ***f
 
           sum = pred ( morgan, reality, predictions, 4, vsum, sum2, vsum2 );
 
-          double mon {-1.0}, mon2{-1.0};
-	  
+          double mon {-1.0}, mon2 {-1.0};
+
           Habituation &h2 = morgan->getHabituation2();
-	  
+
           bool habi2 =
             h2.is_habituation ( vsum2, sum2, mon2 );
-	 
-	    
-	      qDebug() << "   HABI2 MONITOR:"
-                  << m_internal_clock
+
+
+          qDebug() << "   HABI2 MONITOR:"
+                   << m_internal_clock
                    << "[SEARCHING] MPU:" << mpu.first.c_str()
-		   << vsum2 << sum2 
+                   << vsum2 << sum2
                    << "bogocertainty of convergence:"
                    << mon2*100 << "%";
-	    
-	    
+
+
           Habituation &h = morgan->getHabituation();
           bool habi =
             h.is_habituation ( vsum, sum, mon );
@@ -696,20 +698,22 @@ void SamuBrain::learning ( int **reality, int **predictions, int ***fp, int ***f
                        << m_internal_clock
                        << "[DETECTED] MPU:" << mpu.first.c_str()
                        << "ELL" << ell;
-            }            
-            
-            
-          if ( maxSamuQl == nullptr && (habi || mon >= 1.0) ) //.9 )
+            }
+
+
+          if ( maxSamuQl == nullptr && ( habi || mon >= 1.0 ) ) //.9 )
             {
               maxSamuQl = mpu.second;
               //break;
             }
-            
-            
+
+
         } // for MPUs
-        
-      if(ell)  
-      qDebug() << "   KNOWLEDGE MONITOR:";
+
+      if ( ell )
+        {
+          qDebug() << "   KNOWLEDGE MONITOR:";
+        }
 
 
       // nem baj, ha sokáig kell menni, mert a párhuzamos szálakból a kiválasztott
@@ -851,16 +855,16 @@ void SamuBrain::init_MPUs ( bool ex )
           if ( mpu.second != m_morgan )
             {
               morgan->getHabituation().clear();
-	      
+
               morgan->getHabituation2().clear();
-	      
+
             }
         }
       else
         {
           morgan->getHabituation().clear();
-	  
-	                morgan->getHabituation2().clear();
+
+          morgan->getHabituation2().clear();
 
         }
 
