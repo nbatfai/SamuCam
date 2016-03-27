@@ -357,7 +357,7 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
 
                 } // if
 
-          ss << reality[r][c];
+          ss << reality[r][c]/10;
           for ( int ci {0}; ci<25; ++ci )
             {
               ss << '|';
@@ -382,7 +382,7 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
           //  prev[r][c] = samuQl[r][c].action();// mintha a samuQl hívása után a predikciót mentettem volna el (B)
           //predictions[r][c] =  prev[r][c];
 
-          SPOTriplet response = samuQl[r][c] ( reality[r][c], prg, isLearning == 0 );
+          SPOTriplet response = samuQl[r][c] ( reality[r][c]/10, prg, isLearning == 0 );
 
 //          if ( prev[r][c] )
           if ( prev[r][c] && reality[r][c] )
@@ -438,7 +438,7 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
           }
 
           //prev[r][c] = reality[r][c];
-          prev[r][c] = predictions[r][c] = response;
+          prev[r][c] = predictions[r][c] = 10*response;
 
           // aligning to psamu1 paper // if ( ( predictions[r][c] == prev[r][c] ) && ( prev[r][c] != 0 ) )
           /*
