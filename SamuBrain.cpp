@@ -313,9 +313,15 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
 
   vsum = sum2 = vsum2 = 0;
 
-  for ( int r {0}; r<m_h; ++r )
+  int inc;
+  if(isLearning == 4)
+    inc = 10;
+  else
+    inc = 1;
+  
+  for ( int r {0}; r<m_h; r+=inc )
     {
-      for ( int c {0}; c<m_w; ++c )
+      for ( int c {0}; c<m_w; c+=inc )
         {
 
           std::stringstream ss;
@@ -391,7 +397,7 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
               ++vsum2;
               //if (  samuQl[r][c].reward() == samuQl[r][c].get_max_reward()/*reality[r][c] == prev[r][c]*/ )
               //if ( reality[r][c] == prev[r][c] )
-              if ( std::abs ( reality[r][c] - prev[r][c] ) < 5 )
+              if ( std::abs ( reality[r][c] - prev[r][c] ) < 30 )
                 {
                   ++sum2;
 //		  if(!isLearning)
@@ -406,7 +412,7 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
               ++vsum;
               //if (  samuQl[r][c].reward() == samuQl[r][c].get_max_reward()/*reality[r][c] == prev[r][c]*/ )
 //              if ( reality[r][c] == prev[r][c] )
-              if ( std::abs ( reality[r][c] - prev[r][c] ) < 5 )
+              if ( std::abs ( reality[r][c] - prev[r][c] ) < 30 )
                 {
                   ++sum;
 //		  if(!isLearning)

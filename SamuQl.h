@@ -796,7 +796,7 @@ public:
         double reward =
             //3.0*triplet.cmp ( prev_action ) - 1.5;
             //( triplet == prev_action ) ?max_reward:min_reward;
-            ( std::abs ( triplet - prev_action ) < 5 ) ?max_reward:min_reward;
+            ( std::abs ( triplet - prev_action ) < 3 ) ?max_reward:min_reward;
         /*
                 if ( triplet == prev_action ) {
                     reinforced_action.first = prev_state;
