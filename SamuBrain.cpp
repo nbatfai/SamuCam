@@ -313,15 +313,22 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
 
   vsum = sum2 = vsum2 = 0;
 
-  int inc;
+  int inc, r, c;
   if(isLearning == 4)
-    inc = 10;
+  {
+    inc = 1000;
+    r = m_h/2;
+    c = m_w/2;
+  }
   else
+  {
     inc = 1;
-  
-  for ( int r {0}; r<m_h; r+=inc )
+    r = c = 0;
+  }
+    
+  for ( ; r<m_h; r+=inc )
     {
-      for ( int c {0}; c<m_w; c+=inc )
+      for (/*c*/; c<m_w; c+=inc )
         {
 
           std::stringstream ss;
