@@ -18,7 +18,7 @@ wget https://github.com/Itseez/opencv/raw/master/data/lbpcascades/lbpcascade_fro
 git checkout vInitialHack
  ~/Qt/5.5/gcc_64/bin/qmake SamuLife.pro
  make
- ./SamuCam 2>out
+ ./SamuCam --ip http://192.168.0.18:8080/video?x.mjpeg 2>out 
 ```
 
 ```
