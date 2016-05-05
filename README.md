@@ -82,3 +82,14 @@ https://github.com/nbatfai/SamuCam
 
 Robopsychology One
 https://github.com/nbatfai/Robopsychology
+
+---
+
+SamuTuring
+https://github.com/nbatfai/SamuTuring
+
+Samu C. Turing
+https://github.com/nbatfai/SamuCTuring
+
+
+
