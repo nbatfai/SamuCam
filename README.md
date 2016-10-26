@@ -96,3 +96,8 @@ https://github.com/nbatfai/SamuCTuring
 SamuSmartCity
 https://github.com/nbatfai/SamuSmartCity
 
+---
+
+ESAMU - Samu Entropy, Esport and Artificial Intelligence
+https://github.com/nbatfai/SamuEntropy
+
